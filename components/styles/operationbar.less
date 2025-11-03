@@ -1,0 +1,98 @@
+.operation-bar {
+    position: fixed;
+    z-index: 5000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--titlebarBG);
+    top: 70px;
+    left: 55px;
+    width: 230px;
+    min-height: 100px;
+    height: max-content;
+    transform-origin: top;
+    transition: all 0.3s;
+}
+
+.hide-operation-bar {
+    transform-origin: top;
+    transform: scaleY(0);
+}
+
+.operation-bar-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 15px;
+}
+
+.operation-bar-text {
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    margin: 0px;
+    margin-right: 10px;
+}
+
+.operation-bar-input {
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    font-size: 19px;
+    border: none;
+    background-color: var(--navbarButtonBG);
+    width: 80px;
+}
+
+.operation-bar-button {
+    background-color: var(--text);
+    color: black;
+    border: 1px solid black;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 3px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-top: -5px;
+    margin-bottom: 3px;
+    margin-right: 10px;
+    &:hover {
+        border: 1px solid #c9daff;
+        color: #c8d7ff;
+    }
+    &:last-child {
+        margin-right: 0px;
+    }
+}
+
+.btn-primary {
+    padding: 2px 5px;
+    background-color: var(--buttonBG);
+    border-color: var(--buttonBG);
+    &:hover {
+        background-color: var(--buttonBG);
+        border-color: var(--buttonBG);
+    }
+    &:active {
+        background-color: var(--buttonBG);
+        border-color: var(--buttonBG);
+    }
+}
+
+.show > .btn-primary.dropdown-toggle {
+    background-color: var(--buttonBG);
+    border-color: var(--buttonBG);
+}
+
+.dropdown-item.active {
+    background-color: var(--buttonBG);
+}
+
+.dropdown-menu {
+    padding: 0px;
+    min-width: unset;
+}

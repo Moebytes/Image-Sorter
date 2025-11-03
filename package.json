@@ -1,0 +1,46 @@
+{
+  "name": "image-sorter",
+  "version": "1.0.0",
+  "description": "An image sorter.",
+  "main": "server.ts",
+  "type": "module",
+  "scripts": {
+    "start": "npm run clean && rsbuild build && node server.ts",
+    "clean": "del-cli ./dist"
+  },
+  "keywords": [
+    "image",
+    "sorter"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moebytes/Image-Sorter"
+  },
+  "author": "Moebytes",
+  "license": "CC BY-NC 4.0",
+  "devDependencies": {
+    "@rsbuild/core": "^1.4.11",
+    "@rsbuild/plugin-less": "^1.3.1",
+    "@rsbuild/plugin-node-polyfill": "^1.3.2",
+    "@rsbuild/plugin-react": "^1.3.4",
+    "@types/node": "^14.6.2",
+    "@types/react": "^16.9.48",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/react-slider": "^1.3.1",
+    "del-cli": "^3.0.1",
+    "dotenv": "^8.2.0",
+    "react-router-dom": "^5.2.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "mime": "^3.0.0",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.2",
+    "react-slider": "^1.3.1"
+  }
+}
