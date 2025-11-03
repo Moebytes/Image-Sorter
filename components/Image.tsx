@@ -40,7 +40,13 @@ const Image: React.FunctionComponent<Props> = (props) => {
         }
     }, [selectFlag])
 
-    const onClick = () => {
+    const onClick = (event: React.MouseEvent) => {
+        if (event.metaKey || event.ctrlKey || event.button === 1) {
+            event.preventDefault()
+            let id = path.basename(props.img).split("_")[0]
+            const newWindow = window.open(`https://www.pixiv.net/en/artworks/${id}`, "_blank")
+            return newWindow?.focus()
+        }
         const isSelected = !selectionItems.has(props.img)
         if (isSelected) {
             selectionItems.add(props.img)

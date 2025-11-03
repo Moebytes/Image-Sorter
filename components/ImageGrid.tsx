@@ -15,8 +15,9 @@ const ImageGrid: React.FunctionComponent = (props) => {
     const history = useHistory()
 
     const updateImages = async () => {
-        const data = await fetch(`/images/${selectedFolder}/files.json`).then((r) => r.json())
-        const images = data.files.map((file: string) => `/images/${selectedFolder}/${file}`)
+        let data = await fetch(`/images/${selectedFolder}/files.json`).then((r) => r.json())
+        let files = data.files.sort(new Intl.Collator(undefined, {numeric: true, sensitivity: "base"}).compare)
+        const images = files.map((file: string) => `/images/${selectedFolder}/${file}`)
         setImages(images)
     }
 

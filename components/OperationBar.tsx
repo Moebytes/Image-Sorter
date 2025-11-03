@@ -60,11 +60,16 @@ const OperationBar: React.FunctionComponent = () => {
                 <DropdownButton className="operation-row-dropdown" title={special1} drop="down">
                     <Dropdown.Item active={special1 === "none"} onClick={() => setSpecial1("none")}>none</Dropdown.Item>
                     <Dropdown.Item active={special1 === "comic"} onClick={() => setSpecial1("comic")}>comic</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "color-comic"} onClick={() => setSpecial1("color-comic")}>color-comic</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "chibi"} onClick={() => setSpecial1("chibi")}>chibi</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "pixel"} onClick={() => setSpecial1("pixel")}>pixel</Dropdown.Item>
                     <Dropdown.Item active={special1 === "daki"} onClick={() => setSpecial1("daki")}>daki</Dropdown.Item>
                     <Dropdown.Item active={special1 === "promo"} onClick={() => setSpecial1("promo")}>promo</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "3d"} onClick={() => setSpecial1("3d")}>3d</Dropdown.Item>
                     <Dropdown.Item active={special1 === "text"} onClick={() => setSpecial1("text")}>text</Dropdown.Item>
                     <Dropdown.Item active={special1 === "sketch"} onClick={() => setSpecial1("sketch")}>sketch</Dropdown.Item>
                     <Dropdown.Item active={special1 === "lineart"} onClick={() => setSpecial1("lineart")}>lineart</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "fanbox"} onClick={() => setSpecial1("fanbox")}>fanbox</Dropdown.Item>
                     <Dropdown.Item active={special1 === "r18"} onClick={() => setSpecial1("r18")}>r18</Dropdown.Item>
                 </DropdownButton>
             </div>
@@ -73,11 +78,16 @@ const OperationBar: React.FunctionComponent = () => {
                 <DropdownButton className="operation-row-dropdown" title={special2} drop="down">
                     <Dropdown.Item active={special2 === "none"} onClick={() => setSpecial2("none")}>none</Dropdown.Item>
                     <Dropdown.Item active={special2 === "comic"} onClick={() => setSpecial2("comic")}>comic</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "color-comic"} onClick={() => setSpecial2("color-comic")}>color-comic</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "chibi"} onClick={() => setSpecial2("chibi")}>chibi</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "pixel"} onClick={() => setSpecial2("pixel")}>pixel</Dropdown.Item>
                     <Dropdown.Item active={special2 === "daki"} onClick={() => setSpecial2("daki")}>daki</Dropdown.Item>
                     <Dropdown.Item active={special2 === "promo"} onClick={() => setSpecial2("promo")}>promo</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "3d"} onClick={() => setSpecial2("3d")}>3d</Dropdown.Item>
                     <Dropdown.Item active={special2 === "text"} onClick={() => setSpecial2("text")}>text</Dropdown.Item>
                     <Dropdown.Item active={special2 === "sketch"} onClick={() => setSpecial2("sketch")}>sketch</Dropdown.Item>
                     <Dropdown.Item active={special2 === "lineart"} onClick={() => setSpecial2("lineart")}>lineart</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "fanbox"} onClick={() => setSpecial2("fanbox")}>fanbox</Dropdown.Item>
                     <Dropdown.Item active={special2 === "r18"} onClick={() => setSpecial2("r18")}>r18</Dropdown.Item>
                 </DropdownButton>
             </div>
