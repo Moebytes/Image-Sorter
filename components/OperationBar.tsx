@@ -43,6 +43,7 @@ const OperationBar: React.FunctionComponent = () => {
                 <DropdownButton className="operation-row-dropdown" title={folder} drop="down">
                     <Dropdown.Item active={folder === "good"} onClick={() => setFolder("good")}>good</Dropdown.Item>
                     <Dropdown.Item active={folder === "meh"} onClick={() => setFolder("meh")}>meh</Dropdown.Item>
+                    <Dropdown.Item active={folder === "bad"} onClick={() => setFolder("bad")}>bad</Dropdown.Item>
                 </DropdownButton>
             </div>
             <div className="operation-bar-row">

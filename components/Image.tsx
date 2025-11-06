@@ -43,7 +43,7 @@ const Image: React.FunctionComponent<Props> = (props) => {
     const onClick = (event: React.MouseEvent) => {
         if (event.metaKey || event.ctrlKey || event.button === 1) {
             event.preventDefault()
-            let id = path.basename(props.img).split("_")[0]
+            let id = path.basename(props.img, path.extname(props.img)).split("_")[0]
             const newWindow = window.open(`https://www.pixiv.net/en/artworks/${id}`, "_blank")
             return newWindow?.focus()
         }

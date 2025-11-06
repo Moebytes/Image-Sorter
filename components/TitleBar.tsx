@@ -133,11 +133,15 @@ const TitleBar: React.FunctionComponent<Props> = (props) => {
         setPixelate(1)
     }
 
-    const getFilter = () => {
+    const getFilter2 = () => {
         if (typeof window === "undefined") return
         const bodyStyles = window.getComputedStyle(document.body)
         const color = bodyStyles.getPropertyValue("--text")
         return functions.calculateFilter(color)
+    }
+
+    const getFilter = () => {
+        return `hue-rotate(${siteHue - 180}deg) saturate(${siteSaturation}%) brightness(${siteLightness + 70}%)`
     }
 
     const changeDropdown = (dropdown: string) => {
@@ -180,15 +184,15 @@ const TitleBar: React.FunctionComponent<Props> = (props) => {
             <div className="titlebar-logo-container">
                 <span className="titlebar-hover">
                     <div className="titlebar-text-container">
-                        <img className="titlebar-img" src={logo} onClick={() => changeDropdown("operation")}/>
+                        <img className="titlebar-img" src={logo} onClick={() => changeDropdown("operation")} style={{filter: getFilter()}}/>
                     </div>
                 </span>
             </div>
             <div className="titlebar-container">
                 <div className="titlebar-color-container">
-                    <img className="titlebar-color-icon" src={color} onClick={() => changeDropdown("color")} ref={colorRef}/>
-                    <img className="titlebar-color-icon" src={size} onClick={() => changeDropdown("size")} ref={sizeRef}/>
-                    <img className="titlebar-color-icon" src={effects} onClick={() => changeDropdown("effects")} ref={effectsRef}/>
+                    <img className="titlebar-color-icon" src={color} onClick={() => changeDropdown("color")} ref={colorRef} style={{filter: getFilter()}}/>
+                    <img className="titlebar-color-icon" src={size} onClick={() => changeDropdown("size")} ref={sizeRef} style={{filter: getFilter()}}/>
+                    <img className="titlebar-color-icon" src={effects} onClick={() => changeDropdown("effects")} ref={effectsRef} style={{filter: getFilter()}}/>
                 </div>
             </div>
             <div className={`title-dropdown ${activeDropdown === "color" ? "" : "hide-title-dropdown"}`} style={{marginLeft: getColorMarginLeft()}}>
