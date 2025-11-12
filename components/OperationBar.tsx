@@ -22,6 +22,9 @@ const OperationBar: React.FunctionComponent = () => {
         setSelectFlag(true)
     }
 
+    let sortRating = false
+    let resetFolder = true
+
     const move = async (change?: boolean) => {
         let images = Array.from(selectionItems.values())
         await fetch("/move-images", {method: "POST", headers: {"content-type": "application/json"}, 
@@ -34,6 +37,31 @@ const OperationBar: React.FunctionComponent = () => {
         setSpecial1("none")
         setSpecial2("none")
         setAltSource("")
+        if (resetFolder) setFolder("good")
+    }
+
+    if (sortRating) {
+        return (
+            <div className={`operation-bar ${activeDropdown === "operation" ? "" : "hide-operation-bar"}`}>
+                <div className="operation-bar-row">
+                    <p className="operation-bar-text">Send To: </p>
+                    <DropdownButton className="operation-row-dropdown" title={folder} drop="down">
+                        <Dropdown.Item active={folder === "good"} onClick={() => setFolder("good")}>good</Dropdown.Item>
+                        <Dropdown.Item active={folder === "meh"} onClick={() => setFolder("meh")}>meh</Dropdown.Item>
+                        <Dropdown.Item active={folder === "bad"} onClick={() => setFolder("bad")}>bad</Dropdown.Item>
+                        <Dropdown.Item active={folder === "sketch"} onClick={() => setFolder("sketch")}>sketch</Dropdown.Item>
+                        <Dropdown.Item active={folder === "cute"} onClick={() => setFolder("cute")}>cute</Dropdown.Item>
+                        <Dropdown.Item active={folder === "sexy"} onClick={() => setFolder("sexy")}>sexy</Dropdown.Item>
+                        <Dropdown.Item active={folder === "erotic"} onClick={() => setFolder("erotic")}>erotic</Dropdown.Item>
+                    </DropdownButton>
+                </div>
+                <div className="operation-bar-row">
+                    <button className="operation-bar-button" onClick={() => deselect()}>Deselect</button>
+                    <button className="operation-bar-button" onClick={() => move(true)}>Change</button>
+                    <button className="operation-bar-button" onClick={() => move()}>Move</button>
+                </div>
+            </div>
+        )
     }
 
     return (

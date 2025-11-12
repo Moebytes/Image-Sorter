@@ -2,6 +2,7 @@ import path from "path"
 import cors from "cors"
 import mime from "mime"
 import fs from "fs"
+import child_process from "child_process"
 import express from "express"
 import dotenv from "dotenv"
 const __dirname = path.resolve()
@@ -76,6 +77,22 @@ app.post("/move-images", function(req, res, next) {
     let src = path.join(srcFolder, filename)
     let dest = path.join(destFolder, newName)
     fs.renameSync(src, dest)
+  }
+  res.status(200).send("Success")
+})
+
+app.post("/show-image", function(req, res, next) {
+  let {image} = req.body
+  let baseFolder = path.basename(path.dirname(image))
+  let filename = path.basename(image)
+  let srcFolder = path.join(getImagesLocation(), baseFolder)
+  let src = path.join(srcFolder, filename)
+  if (process.platform === "win32") {
+    child_process.execSync(`explorer /select,"${src.replace(/\//g, "\\")}"`)
+  } else if (process.platform === "darwin") {
+    child_process.execSync(`open -R "${src}"`)
+  } else if (process.platform === "linux") {
+    child_process.execSync(`xdg-open "${path.dirname(src)}"`)
   }
   res.status(200).send("Success")
 })

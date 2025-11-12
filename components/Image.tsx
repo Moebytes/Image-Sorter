@@ -56,13 +56,18 @@ const Image: React.FunctionComponent<Props> = (props) => {
         setSelected(isSelected)
     }
 
+    const onDoubleClick = async () => {
+        await fetch("/show-image", {method: "POST", headers: {"content-type": "application/json"}, 
+            body: JSON.stringify({image: props.img})})
+    }
+
     if (!/\.(jpe?g|png|webp|avif|jxl)$/.test(props.img)) return null
 
     return (
         <div className="image-filters" onMouseEnter={() => setEnableDrag(true)} ref={containerRef}
             style={{filter: `brightness(${brightness}%) contrast(${contrast}%) 
             hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}>
-            <img className="image" src={props.img} style={{height: `${imageSize}px`}} onClick={onClick}/>
+            <img className="image" src={props.img} style={{height: `${imageSize}px`}} onClick={onClick} onDoubleClick={onDoubleClick}/>
             <span className="image-text">{path.basename(props.img)}</span>
         </div>
     )
