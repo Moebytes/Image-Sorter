@@ -1,6 +1,8 @@
 # Image Sorter
 
-A faster personal tool to sort images. This is because it's a pain to make sense of finder's small thumbnails, 
+<img src="assets/images/readme.png">
+
+A fast tool to sort images. This is because it's a pain to make sense of finder's small thumbnails, 
 as well as it being easy to lose your selection by misclicking. 
 
 This was slightly modified from [Image Viewer](https://github.com/Moebytes/Image-Viewer)
@@ -20,13 +22,11 @@ Attributes added to the filename to categorize correctly or add certain tags. Mo
 colored-comic, chibi, sketch, lineart, and text
 
 ### Alt source
-This changes the "alt source" of that image... in the case of wanting to group several posts together to the same pixiv id 
+This changes the "alt source" of that image, in the case of wanting to group several posts together to the same pixiv id 
 (because they are very similar) but in actuality the source is a different pixiv post.
 
-Reordering the images and arbitrary renaming isn't supported and has to be done manually
+Reordering the images and arbitrary renaming isn't supported and has to be done manually.
 
 Instructions to start: \
 `npm install` (only run the first time) \
 `npm start`
-
-<img src="assets/images/readme.png">

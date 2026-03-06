@@ -23,7 +23,8 @@ const OperationBar: React.FunctionComponent = () => {
     }
 
     let sortRating = false
-    let resetFolder = true
+    let resetFolder = "good"
+    let resetQualifier = "none"
 
     const move = async (change?: boolean) => {
         let images = Array.from(selectionItems.values())
@@ -33,11 +34,11 @@ const OperationBar: React.FunctionComponent = () => {
         selectionItems.clear()
         setSelectFlag(true)
         setImageFlag(true)
-        setQualifier("p")
+        setQualifier(resetQualifier)
         setSpecial1("none")
         setSpecial2("none")
         setAltSource("")
-        if (resetFolder) setFolder("good")
+        if (resetFolder) setFolder(resetFolder)
     }
 
     if (sortRating) {
@@ -77,6 +78,7 @@ const OperationBar: React.FunctionComponent = () => {
             <div className="operation-bar-row">
                 <p className="operation-bar-text">Qualifier: </p>
                 <DropdownButton className="operation-row-dropdown" title={qualifier} drop="down">
+                    <Dropdown.Item active={qualifier === "none"} onClick={() => setQualifier("none")}>none</Dropdown.Item>
                     <Dropdown.Item active={qualifier === "p"} onClick={() => setQualifier("p")}>p</Dropdown.Item>
                     <Dropdown.Item active={qualifier === "c"} onClick={() => setQualifier("c")}>c</Dropdown.Item>
                     <Dropdown.Item active={qualifier === "c!"} onClick={() => setQualifier("c!")}>c!</Dropdown.Item>
@@ -96,6 +98,7 @@ const OperationBar: React.FunctionComponent = () => {
                     <Dropdown.Item active={special1 === "promo"} onClick={() => setSpecial1("promo")}>promo</Dropdown.Item>
                     <Dropdown.Item active={special1 === "3d"} onClick={() => setSpecial1("3d")}>3d</Dropdown.Item>
                     <Dropdown.Item active={special1 === "text"} onClick={() => setSpecial1("text")}>text</Dropdown.Item>
+                    <Dropdown.Item active={special1 === "sequence"} onClick={() => setSpecial1("sequence")}>sequence</Dropdown.Item>
                     <Dropdown.Item active={special1 === "sketch"} onClick={() => setSpecial1("sketch")}>sketch</Dropdown.Item>
                     <Dropdown.Item active={special1 === "lineart"} onClick={() => setSpecial1("lineart")}>lineart</Dropdown.Item>
                     <Dropdown.Item active={special1 === "fanbox"} onClick={() => setSpecial1("fanbox")}>fanbox</Dropdown.Item>
@@ -114,6 +117,7 @@ const OperationBar: React.FunctionComponent = () => {
                     <Dropdown.Item active={special2 === "promo"} onClick={() => setSpecial2("promo")}>promo</Dropdown.Item>
                     <Dropdown.Item active={special2 === "3d"} onClick={() => setSpecial2("3d")}>3d</Dropdown.Item>
                     <Dropdown.Item active={special2 === "text"} onClick={() => setSpecial2("text")}>text</Dropdown.Item>
+                    <Dropdown.Item active={special2 === "sequence"} onClick={() => setSpecial2("sequence")}>sequence</Dropdown.Item>
                     <Dropdown.Item active={special2 === "sketch"} onClick={() => setSpecial2("sketch")}>sketch</Dropdown.Item>
                     <Dropdown.Item active={special2 === "lineart"} onClick={() => setSpecial2("lineart")}>lineart</Dropdown.Item>
                     <Dropdown.Item active={special2 === "fanbox"} onClick={() => setSpecial2("fanbox")}>fanbox</Dropdown.Item>

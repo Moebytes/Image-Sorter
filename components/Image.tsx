@@ -61,14 +61,25 @@ const Image: React.FunctionComponent<Props> = (props) => {
             body: JSON.stringify({image: props.img})})
     }
 
-    if (!/\.(jpe?g|png|webp|avif|jxl)$/.test(props.img)) return null
+    let isImage = /\.(jpe?g|png|gif|webp|avif|jxl)$/.test(props.img)
+    let isAudio = /\.(wav|mp3|ogg|flac)$/.test(props.img)
+    let isVideo = /\.(mp4|webm|mkv|avi|mov)$/.test(props.img)
+
+    if (!isImage && !isAudio && !isVideo) return null
 
     return (
         <div className="image-filters" onMouseEnter={() => setEnableDrag(true)} ref={containerRef}
             style={{filter: `brightness(${brightness}%) contrast(${contrast}%) 
-            hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}>
-            <img className="image" src={props.img} style={{height: `${imageSize}px`}} onClick={onClick} onDoubleClick={onDoubleClick}/>
-            <span className="image-text">{path.basename(props.img)}</span>
+            hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}
+            onClick={onClick} onDoubleClick={onDoubleClick}>
+            {isImage ?
+                <img className="image" src={props.img} style={{height: `${imageSize}px`}}/>
+            : isAudio ? 
+                <audio className="audio" src={props.img} controls></audio>
+            : isVideo ?
+                <video className="video" src={props.img} style={{height: `${imageSize}px`}} controls></video>
+            : null}
+            <span className="image-text">{path.basename(decodeURIComponent(props.img))}</span>
         </div>
     )
 }

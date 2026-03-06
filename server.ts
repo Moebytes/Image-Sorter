@@ -32,7 +32,7 @@ const writeFolderJSON = () => {
 }
 
 const getFiles = (source: string) => {
-  return fs.readdirSync(source, {withFileTypes: true}).filter(file => file.isFile()).map(file => `"${file.name}"`)
+  return fs.readdirSync(source, {withFileTypes: true}).filter(file => file.isFile()).map(file => `"${encodeURIComponent(file.name)}"`)
 }
 
 const writeFileJSON = () => {
@@ -45,6 +45,8 @@ const writeFileJSON = () => {
 }
 
 const parseFilename = (filename: string, qualifier: string, special1: string, special2: string, altSource: string) => {
+  if (qualifier === "none" && special1 === "none" && special2 === "none" && !altSource) return filename
+  if (qualifier === "none") qualifier = ""
   let {name, ext} = path.parse(filename)
   let nameSplit = name.split("_")
   name = nameSplit.length > 1 ? `${nameSplit[0]}_${nameSplit[nameSplit.length - 1]}`  : nameSplit[0]
@@ -72,7 +74,7 @@ app.post("/move-images", function(req, res, next) {
   if (change) destFolder = srcFolder
   if (!fs.existsSync(destFolder)) fs.mkdirSync(destFolder, {recursive: true})
   for (const image of images) {
-    let filename = path.basename(image)
+    let filename = path.basename(decodeURIComponent(image))
     let newName = parseFilename(filename, qualifier, special1, special2, altSource)
     let src = path.join(srcFolder, filename)
     let dest = path.join(destFolder, newName)
@@ -84,7 +86,7 @@ app.post("/move-images", function(req, res, next) {
 app.post("/show-image", function(req, res, next) {
   let {image} = req.body
   let baseFolder = path.basename(path.dirname(image))
-  let filename = path.basename(image)
+  let filename = path.basename(decodeURIComponent(image))
   let srcFolder = path.join(getImagesLocation(), baseFolder)
   let src = path.join(srcFolder, filename)
   if (process.platform === "win32") {
