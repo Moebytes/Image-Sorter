@@ -73,7 +73,7 @@ const Image: React.FunctionComponent<Props> = (props) => {
         <div className={`image-filters ${isAudio ? "audio-filters" : ""}`} onMouseEnter={() => setEnableDrag(!isAudio)} ref={containerRef}
             style={{filter: isAudio ? undefined : `brightness(${brightness}%) contrast(${contrast}%)
             hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}
-            onClick={onClick} onDoubleClick={onDoubleClick}>
+            onClick={onClick} onDoubleClick={isAudio ? undefined : onDoubleClick}>
             {isImage ?
                 <img className="image" src={props.img} style={{height: `${imageSize}px`}}/>
             : isAudio ? 

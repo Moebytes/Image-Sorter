@@ -8,6 +8,13 @@ interface Props {
 
 const Audio: React.FunctionComponent<Props> = (props) => {
     const filename = path.basename(decodeURIComponent(props.src))
+    const format = path.extname(filename).slice(1).toUpperCase()
+
+    const showFile = async (event: React.MouseEvent) => {
+        event.stopPropagation()
+        await fetch("/show-image", {method: "POST", headers: {"content-type": "application/json"},
+            body: JSON.stringify({image: props.src})})
+    }
 
     const play = (event: React.SyntheticEvent) => {
         const current = event.currentTarget
@@ -21,6 +28,10 @@ const Audio: React.FunctionComponent<Props> = (props) => {
         <div className="audio-heading">
             <span className="audio-icon" aria-hidden="true">♫</span>
             <span className="audio-name" title={filename}>{filename}</span>
+        </div>
+        <div className="audio-meta">
+            <span className="audio-format">{format}</span>
+            <button type="button" className="audio-show-file" onMouseDown={(event) => event.stopPropagation()} onClick={showFile}>Show file</button>
         </div>
         <audio className="audio" src={props.src} controls preload="metadata"
             onMouseDown={(event) => event.stopPropagation()}
