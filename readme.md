@@ -27,6 +27,10 @@ This changes the "alt source" of that image, in the case of wanting to group sev
 
 Reordering the images and arbitrary renaming isn't supported and has to be done manually.
 
+### Audio sorting
+Sorting audio files is also supported. Although images were the original focus, I also 
+found this useful to sort through a large collection of samples.
+
 Instructions to start: \
 `npm install` (only run the first time) \
 `npm start`

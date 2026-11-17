@@ -12,7 +12,7 @@ const OperationBar: React.FunctionComponent = () => {
     const {selectFlag, setSelectFlag} = useContext(SelectFlagContext)
     const {imageFlag, setImageFlag} = useContext(ImageFlagContext)
     const [folder, setFolder] = useState("good")
-    const [qualifier, setQualifier] = useState("p")
+    const [qualifier, setQualifier] = useState("none")
     const [special1, setSpecial1] = useState("none")
     const [special2, setSpecial2] = useState("none")
     const [altSource, setAltSource] = useState("")

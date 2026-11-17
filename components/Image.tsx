@@ -3,6 +3,7 @@ import {EnableDragContext, MobileContext, ImageSizeContext, BrightnessContext,
 ContrastContext, HueContext, SaturationContext, LightnessContext, BlurContext, 
 SharpenContext, PixelateContext, SelectionItemsContext, SelectFlagContext} from "../Context"
 import path from "path"
+import Audio from "./Audio"
 import "./styles/image.less"
 
 interface Props {
@@ -50,6 +51,7 @@ const Image: React.FunctionComponent<Props> = (props) => {
         const isSelected = !selectionItems.has(props.img)
         if (isSelected) {
             selectionItems.add(props.img)
+            containerRef.current?.querySelector("audio")?.play().catch(() => {})
         } else {
             selectionItems.delete(props.img)
         }
@@ -62,24 +64,24 @@ const Image: React.FunctionComponent<Props> = (props) => {
     }
 
     let isImage = /\.(jpe?g|png|gif|webp|avif|jxl)$/.test(props.img)
-    let isAudio = /\.(wav|mp3|ogg|flac)$/.test(props.img)
+    let isAudio = /\.(wav|mp3|ogg|flac)$/i.test(props.img)
     let isVideo = /\.(mp4|webm|mkv|avi|mov)$/.test(props.img)
 
     if (!isImage && !isAudio && !isVideo) return null
 
     return (
-        <div className="image-filters" onMouseEnter={() => setEnableDrag(true)} ref={containerRef}
-            style={{filter: `brightness(${brightness}%) contrast(${contrast}%) 
+        <div className={`image-filters ${isAudio ? "audio-filters" : ""}`} onMouseEnter={() => setEnableDrag(!isAudio)} ref={containerRef}
+            style={{filter: isAudio ? undefined : `brightness(${brightness}%) contrast(${contrast}%)
             hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}
             onClick={onClick} onDoubleClick={onDoubleClick}>
             {isImage ?
                 <img className="image" src={props.img} style={{height: `${imageSize}px`}}/>
             : isAudio ? 
-                <audio className="audio" src={props.img} controls></audio>
+                <Audio src={props.img}/>
             : isVideo ?
                 <video className="video" src={props.img} style={{height: `${imageSize}px`}} controls></video>
             : null}
-            <span className="image-text">{path.basename(decodeURIComponent(props.img))}</span>
+            {!isAudio && <span className="image-text">{path.basename(decodeURIComponent(props.img))}</span>}
         </div>
     )
 }

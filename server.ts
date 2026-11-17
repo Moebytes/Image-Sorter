@@ -100,11 +100,11 @@ app.post("/show-image", function(req, res, next) {
 })
 
 app.get("/images/*", function(req, res, next) {
-  const filename = req.path.replace("/images/", "")
-  const pathname = path.join(getImagesLocation(), decodeURIComponent(filename))
-  if (!fs.existsSync(pathname)) return res.status(404).end()
-  const file = fs.readFileSync(pathname)
-  res.status(200).send(file)
+  const filename = decodeURIComponent(req.path.replace("/images/", ""))
+  const root = path.resolve(getImagesLocation())
+  const pathname = path.resolve(root, filename)
+  if (!pathname.startsWith(root + path.sep)) return res.status(404).end()
+  res.sendFile(pathname)
 })
 
 app.get("/update", function(req, res, next) {
